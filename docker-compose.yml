@@ -4,6 +4,7 @@ networks:
     name: cdk-validium
 services:
   rpc:
+    stop_grace_period: 2m
     container_name: cdk-validium-rpc
     restart: unless-stopped
     depends_on:
@@ -40,6 +41,7 @@ services:
       - "/app/zkevm-node run --network custom --cfg /app/config.toml --components rpc --custom-network-file /app/genesis.json"
 
   synchronizer:
+    stop_grace_period: 2m
     container_name: cdk-validium-synchronizer
     restart: unless-stopped
     depends_on:
@@ -69,6 +71,7 @@ services:
       - "/app/zkevm-node run --network custom --cfg /app/config.toml --components synchronizer --custom-network-file /app/genesis.json"
 
   prover-db:
+    stop_grace_period: 3m
     container_name: cdk-validium-prover-db
     restart: unless-stopped
     image: postgres:15
@@ -94,15 +97,12 @@ services:
       - "config_file=/etc/postgresql.conf"
 
   state-db:
+    stop_grace_period: 3m
     container_name: cdk-validium-state-db
     restart: unless-stopped
     image: postgres:15
     healthcheck:
-      test:
-        [
-          "CMD-SHELL",
-          "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"
-        ]
+      test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -123,15 +123,12 @@ services:
       - "config_file=/etc/postgresql.conf"
 
   pool-db:
+    stop_grace_period: 3m
     container_name: cdk-validium-pool-db
     restart: unless-stopped
     image: postgres:15
     healthcheck:
-      test:
-        [
-          "CMD-SHELL",
-          "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"
-        ]
+      test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -149,6 +146,7 @@ services:
       - "500"
 
   executor:
+    stop_grace_period: 2m
     container_name: cdk-validium-executor
     restart: unless-stopped
     image: ${ZKEVM_PROVER_IMAGE}

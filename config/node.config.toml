@@ -122,7 +122,7 @@ DefaultGasPriceWei = 1000000000
 MaxGasPriceWei = 0
 
 [MTClient]
-URI = "executor:5062"
+URI = "cdk-validium-executor:5062"
 
 [Executor]
 URI = "cdk-validium-executor:5071"
