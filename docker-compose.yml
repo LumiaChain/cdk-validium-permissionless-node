@@ -150,6 +150,9 @@ services:
     container_name: cdk-validium-executor
     restart: unless-stopped
     image: ${ZKEVM_PROVER_IMAGE}
+    environment:
+       - EXPERIMENTAL_DOCKER_DESKTOP_FORCE_QEMU=1
+    platform: linux/amd64
     depends_on:
       state-db:
         condition: service_healthy
