@@ -15,3 +15,4 @@ This work is based on docker-compose provided in [cdk-validium-node repository](
 * Set correct RPC URLs in `.env`
 * If running forkId other than 9, set correct docker image tags for `cdk-validium-node` and `zkevm-prover`
 * [Optional] Set correct paths for database storage in `.env` file
+* Run `docker-compose up`

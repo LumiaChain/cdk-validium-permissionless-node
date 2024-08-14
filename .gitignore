@@ -1,1 +1,4 @@
 .env
+/state-db
+/prover-db
+/pool-db
