@@ -17,3 +17,9 @@ This work is based on docker-compose provided in [cdk-validium-node repository](
 * If running forkId other than 9, set correct docker image tags for `cdk-validium-node` and `zkevm-prover` - Currently Lumia supports forkId 9
 * [Optional] Set correct paths for database storage in `.env` file
 * Run `docker-compose up`
+
+## Upgrading cdk-validium-node version
+It is suggested to stop rpc and synchronizer services and make a backup copy of the databases before performing the upgrade.
+Check that the versions of the components you plan to apply corresponds to [CDK Version compatibility matrix](https://docs.polygon.technology/cdk/version-matrix/).
+To perform the upgrade simply change the docker image version of needed components and start all services.
+Please note that reverting back from upgraded to previous version may fail because newer version can apply migrations to the database schema.
