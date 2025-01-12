@@ -1,167 +1,20 @@
-version: "3.5"
-networks:
-  default:
-    name: cdk-validium
 services:
   rpc:
-    stop_grace_period: 2m
-    container_name: cdk-validium-rpc
-    restart: unless-stopped
-    depends_on:
-      pool-db:
-        condition: service_healthy
-      state-db:
-        condition: service_healthy
-      prover-db:
-        condition: service_healthy
-      synchronizer:
-        condition: service_started
-      executor:
-        condition: service_started
-    image: ${CDK_VALIDIUM_NODE_IMAGE}
-    deploy:
-      resources:
-        limits:
-          memory: 1G
-        reservations:
-          memory: 512M
-    ports:
-      - 8547:8545
-      - 8548:8546
-      - 9091:9091 # needed if metrics enabled
+    container_name: lumia-${NETWORK_ENV}-rpc
+    image: hermeznetwork/cdk-erigon:v2.60.2
+    user: root
+    restart: always
     environment:
-      - ZKEVM_NODE_ETHERMAN_URL=${L1_RPC_URL}
-      - ZKEVM_NODE_RPC_SEQUENCERNODEURI=${L2_SEQUENCER_URL}
+      - CDK_ERIGON_SEQUENCER=0
+    command: ["--config", "/root/dynamic-configs/dynamic-lumia-testnet-config.yaml"]
     volumes:
-      - ./config/node.config.toml:/app/config.toml
-      - ./config/genesis.json:/app/genesis.json
-    command:
-      - "/bin/sh"
-      - "-c"
-      - "/app/zkevm-node run --network custom --cfg /app/config.toml --components rpc --custom-network-file /app/genesis.json"
-
-  synchronizer:
-    stop_grace_period: 2m
-    container_name: cdk-validium-synchronizer
-    restart: unless-stopped
-    depends_on:
-      state-db:
-        condition: service_healthy
-      prover-db:
-        condition: service_healthy
-      executor:
-        condition: service_started
-    image: ${CDK_VALIDIUM_NODE_IMAGE}
+      - ./config/${NETWORK_ENV:-testnet}/dynamic-lumia-testnet-config.yaml:/root/dynamic-configs/dynamic-lumia-testnet-config.yaml:ro
+      - ./config/${NETWORK_ENV:-testnet}/dynamic-lumia-testnet-allocs.json:/root/dynamic-configs/dynamic-lumia-testnet-allocs.json
+      - ./config/${NETWORK_ENV:-testnet}/dynamic-lumia-testnet-chainspec.json:/root/dynamic-configs/dynamic-lumia-testnet-chainspec.json
+      - ./config/${NETWORK_ENV:-testnet}/dynamic-lumia-testnet-conf.json:/root/dynamic-configs/dynamic-lumia-testnet-conf.json
+      - ./data/${NETWORK_ENV:-testnet}/rpc/:/data
     ports:
-      - 9092:9091 # needed if metrics enabled
-    deploy:
-      resources:
-        limits:
-          memory: 1G
-        reservations:
-          memory: 512M
-    environment:
-      - ZKEVM_NODE_ETHERMAN_URL=${L1_RPC_URL}
-    volumes:
-      - ./config/node.config.toml:/app/config.toml
-      - ./config/genesis.json:/app/genesis.json
-    command:
-      - "/bin/sh"
-      - "-c"
-      - "/app/zkevm-node run --network custom --cfg /app/config.toml --components synchronizer --custom-network-file /app/genesis.json"
-
-  prover-db:
-    stop_grace_period: 3m
-    container_name: cdk-validium-prover-db
-    restart: unless-stopped
-    image: postgres:15
-    healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -d prover_db -U prover_user" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    ports:
-      - 5432:5432
-    volumes:
-      - ./scripts/init_prover_db.sql:/docker-entrypoint-initdb.d/init.sql
-      - ${PROVER_DB_DATA_DIR}:/var/lib/postgresql/data
-      - ./config/postgresql.conf:/etc/postgresql.conf
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-    command:
-      - "postgres"
-      - "-N"
-      - "500"
-      - "-c"
-      - "config_file=/etc/postgresql.conf"
-
-  state-db:
-    stop_grace_period: 3m
-    container_name: cdk-validium-state-db
-    restart: unless-stopped
-    image: postgres:15
-    healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    ports:
-      - 5433:5432
-    volumes:
-      - ${STATE_DB_DATA_DIR}:/var/lib/postgresql/data
-      - ./config/postgresql.conf:/etc/postgresql.conf
-    environment:
-      - POSTGRES_USER=state_user
-      - POSTGRES_PASSWORD=state_password
-      - POSTGRES_DB=state_db
-    command:
-      - "postgres"
-      - "-N"
-      - "500"
-      - "-c"
-      - "config_file=/etc/postgresql.conf"
-
-  pool-db:
-    stop_grace_period: 3m
-    container_name: cdk-validium-pool-db
-    restart: unless-stopped
-    image: postgres:15
-    healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    ports:
-      - 5434:5432
-    volumes:
-      - ${POOL_DB_DATA_DIR}:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_USER=pool_user
-      - POSTGRES_PASSWORD=pool_password
-      - POSTGRES_DB=pool_db
-    command:
-      - "postgres"
-      - "-N"
-      - "500"
-
-  executor:
-    stop_grace_period: 2m
-    container_name: cdk-validium-executor
-    restart: unless-stopped
-    image: ${ZKEVM_PROVER_IMAGE}
-    environment:
-       - EXPERIMENTAL_DOCKER_DESKTOP_FORCE_QEMU=1
-    platform: linux/amd64
-    depends_on:
-      state-db:
-        condition: service_healthy
-      prover-db:
-        condition: service_healthy
-    ports:
-      - 5061:5061 # MT
-      - 5071:5071 # Executor
-    volumes:
-      - ./config/prover.config.json:/usr/src/app/config.json
-    command: >
-      zkProver -c /usr/src/app/config.json
+      - 8545:8545 # rpc
+      - 8546:8546 # ws
+      - 9000:9000 # datastream
+      - 9090:9090 # metrics

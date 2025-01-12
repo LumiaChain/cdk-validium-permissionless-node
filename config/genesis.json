@@ -1,1 +1,0 @@
-Check mainnet and testnet folders for genesis.json files. Copy and paste the contents of the genesis.json file into the genesis.json file in the config folder.
