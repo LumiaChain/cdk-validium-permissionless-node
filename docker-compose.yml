@@ -1,20 +1,30 @@
 services:
   rpc:
-    container_name: lumia-${NETWORK_ENV}-rpc
-    image: hermeznetwork/cdk-erigon:v2.60.2
+    container_name: rpc
+    image: hermeznetwork/cdk-erigon:v2.61.14-RC1-amd64
     user: root
     restart: always
+    env_file:
+      .env
     environment:
       - CDK_ERIGON_SEQUENCER=0
-    command: ["--config", "/root/dynamic-configs/dynamic-lumia-testnet-config.yaml"]
+    command: 
+      - "--config" 
+      - "/root/dynamic-configs/dynamic-prism-config.yaml"
+      - "--zkevm.l2-sequencer-rpc-url"
+      - ${CDK_ERIGON_ZKEVM_L2_SEQUENCER_RPC_URL}
+      - "--zkevm.l2-datastreamer-url"
+      - ${CDK_ERIGON_L2_DATASTREAMER_URL}
+      - "--zkevm.l1-rpc-url"
+      - ${CDK_ERIGON_L1_RPC_URL}
     volumes:
-      - ./config/${NETWORK_ENV:-testnet}/dynamic-lumia-testnet-config.yaml:/root/dynamic-configs/dynamic-lumia-testnet-config.yaml:ro
-      - ./config/${NETWORK_ENV:-testnet}/dynamic-lumia-testnet-allocs.json:/root/dynamic-configs/dynamic-lumia-testnet-allocs.json
-      - ./config/${NETWORK_ENV:-testnet}/dynamic-lumia-testnet-chainspec.json:/root/dynamic-configs/dynamic-lumia-testnet-chainspec.json
-      - ./config/${NETWORK_ENV:-testnet}/dynamic-lumia-testnet-conf.json:/root/dynamic-configs/dynamic-lumia-testnet-conf.json
-      - ./data/${NETWORK_ENV:-testnet}/rpc/:/data
+      - ./config/${NETWORK_ENV:-testnet}/dynamic-prism-config.yaml:/root/dynamic-configs/dynamic-prism-config.yaml:ro
+      - ./config/${NETWORK_ENV:-testnet}/dynamic-prism-allocs.json:/root/dynamic-configs/dynamic-prism-allocs.json
+      - ./config/${NETWORK_ENV:-testnet}/dynamic-prism-chainspec.json:/root/dynamic-configs/dynamic-prism-chainspec.json
+      - ./config/${NETWORK_ENV:-testnet}/dynamic-prism-conf.json:/root/dynamic-configs/dynamic-prism-conf.json
+      - ./data/${NETWORK_ENV:-testnet}:/data
     ports:
       - 8545:8545 # rpc
       - 8546:8546 # ws
-      - 9000:9000 # datastream
+      - 9000:9000 # datastreamer
       - 9090:9090 # metrics
