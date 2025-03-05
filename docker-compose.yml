@@ -1,7 +1,7 @@
 services:
   rpc:
     container_name: rpc
-    image: hermeznetwork/cdk-erigon:v2.61.14-RC1-amd64
+    image: hermeznetwork/cdk-erigon:v2.61.17-amd64
     user: root
     restart: always
     env_file:
