@@ -7,14 +7,14 @@ zkevm.l2-sequencer-rpc-url: L2_SEQUENCER_RPC_URL
 zkevm.l1-chain-id: 1
 zkevm.l1-rollup-id: 7
 zkevm.l1-rpc-url: L1_RPC_URL
-zkevm.address-sequencer: 0x8F2D2Da3044B0A1ea54Ee26F7fe376cD9ec4393F
+zkevm.address-sequencer: 0xCe06F92A73e888a7eb8885Bf4741eF4E5490f8Fb
 zkevm.address-zkevm: 0x92726F7dE49300DBdb60930066bc1d0803c0740B
 zkevm.address-admin: 0x258862dec9a77db57b398c441390783293E2a7A1
 zkevm.address-rollup: 0x5132A183E9F3CB7C848b0AAC5Ae0c4f0491B7aB2
 zkevm.address-ger-manager: 0x580bda1e7A0CFAe92Fa7F6c20A3794F169CE3CFb
 
 zkevm.l1-matic-contract-address: 0x455e53CBB86018Ac2B8092FdCd39d8444aFFC3F6
-zkevm.l1-block-range: 20000
+zkevm.l1-block-range: 500
 zkevm.l1-query-delay: 6000
 zkevm.l1-first-block: 16896721
 zkevm.l1-cache-enabled: false
