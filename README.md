@@ -13,15 +13,19 @@ This work is based on docker-compose provided in [cdk-erigon repository](https:/
 
 ## How to use
 
-* Copy `.env.example` to `.env` and update with valid L1 RPC URL (recommended to use a premium provider)
-* Set `NETWORK_ENV` in `.env` file (or in docker-compose.yml) to either `testnet` or `mainnet`
-* Run `docker-compose up`
+* Copy `env.example` to `.env` and update with valid L1 RPC URL (recommended to use a premium provider)
 
-## Upgrading cdk-validium-node version
+  ```bash
+  cp env.example .env
+  ```
 
-It is suggested to stop rpc and synchronizer services and make a backup copy of the databases before performing the upgrade.
+* Configure the `.env` file for your desired network:
+  * For **testnet** (default): Update `CDK_ERIGON_L1_RPC_URL`, `CDK_ERIGON_L2_DATASTREAMER_URL` and `CDK_ERIGON_ZKEVM_L2_SEQUENCER_RPC_URL` with a Sepolia endpoint
 
-Check that the versions of the components you plan to apply corresponds to [CDK Version compatibility matrix](https://docs.polygon.technology/cdk/version-matrix/).
+  * For **mainnet**: Replace at the top of the `.env` file `testnet` with `mainnet` and update `CDK_ERIGON_L1_RPC_URL`, `CDK_ERIGON_L2_DATASTREAMER_URL` and `CDK_ERIGON_ZKEVM_L2_SEQUENCER_RPC_URL` with a Mainnet endpoint
 
-To perform the upgrade simply change the docker image version of needed components and start all services.
-Please note that reverting back from upgraded to previous version may fail because newer version can apply migrations to the database schema.
+* The configuration includes:
+  * `NETWORK_ENV`: Set to either `testnet` or `mainnet`
+  * Network-specific RPC endpoints for L1 and L2
+
+* Run `docker compose up`
