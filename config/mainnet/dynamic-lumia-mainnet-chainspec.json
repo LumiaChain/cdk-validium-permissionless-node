@@ -1,6 +1,6 @@
 {
-    "ChainName": "dynamic-lumia-testnet",
-    "ChainID": 1952959480,
+    "ChainName": "dynamic-lumia-mainnet",
+    "ChainID": 994873017,
     "consensus": "ethash",
     "homesteadBlock": 0,
     "daoForkBlock": 0,

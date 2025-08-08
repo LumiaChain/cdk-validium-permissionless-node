@@ -1,6 +1,6 @@
 {
-    "ChainName": "dynamic-prism",
-    "ChainID": 994873017,
+    "ChainName": "dynamic-lumia-testnet",
+    "ChainID": 2030232745,
     "consensus": "ethash",
     "homesteadBlock": 0,
     "daoForkBlock": 0,

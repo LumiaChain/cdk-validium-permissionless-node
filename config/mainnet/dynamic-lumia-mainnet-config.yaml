@@ -1,23 +1,22 @@
-chain: dynamic-lumia-testnet
+chain: dynamic-lumia-mainnet
 datadir: /data
-zkevm.l2-chain-id: 2030232745
-zkevm.l2-datastreamer-use-tls: false
+zkevm.l2-chain-id: 994873017
 zkevm.l2-datastreamer-url: L2_DATASTREAMER_URL
 zkevm.l2-sequencer-rpc-url: L2_SEQUENCER_RPC_URL
 
-zkevm.l1-chain-id: 11155111
-zkevm.l1-rollup-id: 12
+zkevm.l1-chain-id: 1
+zkevm.l1-rollup-id: 7
 zkevm.l1-rpc-url: L1_RPC_URL
-zkevm.address-sequencer: 0x61030eFaF205a8E4108A1072269cF8334Bc4BD37
-zkevm.address-zkevm: 0x94F74eD7EF1F24F83c7aa8af15ff0E55032cf7Fb
-zkevm.address-admin: 0x978d8944A2a6E0e988761B31bFdf8EF873f526f4
-zkevm.address-rollup: 0x32d33D5137a7cFFb54c5Bf8371172bcEc5f310ff
-zkevm.address-ger-manager: 0xAd1490c248c5d3CbAE399Fd529b79B42984277DF
+zkevm.address-sequencer: 0xCe06F92A73e888a7eb8885Bf4741eF4E5490f8Fb
+zkevm.address-zkevm: 0x92726F7dE49300DBdb60930066bc1d0803c0740B
+zkevm.address-admin: 0x258862dec9a77db57b398c441390783293E2a7A1
+zkevm.address-rollup: 0x5132A183E9F3CB7C848b0AAC5Ae0c4f0491B7aB2
+zkevm.address-ger-manager: 0x580bda1e7A0CFAe92Fa7F6c20A3794F169CE3CFb
 
-zkevm.l1-matic-contract-address: 0x6a7c3F4B0651d6DA389AD1d11D962ea458cDCA70
+zkevm.l1-matic-contract-address: 0x455e53CBB86018Ac2B8092FdCd39d8444aFFC3F6
 zkevm.l1-block-range: 400
 zkevm.l1-query-delay: 10000
-zkevm.l1-first-block: 5158574
+zkevm.l1-first-block: 16896721
 zkevm.l1-cache-enabled: false
 zkevm.l1-highest-block-type: "finalized"
 zkevm.rpc-ratelimit: 50
@@ -25,20 +24,16 @@ zkevm.data-stream-host: "0.0.0.0"
 zkevm.executor-strict: false
 zkevm.executor-urls: ""
 zkevm.data-stream-port: 9000
-zkevm.datastream-version: 4
+zkevm.datastream-version: 3
 zkevm.data-stream-inactivity-timeout: "10m"
 zkevm.data-stream-inactivity-check-interval: "5m"
 zkevm.data-stream-writeTimeout: "20s"
-zkevm.default-gas-price: 10000000
+zkevm.default-gas-price: 1000000000
 
 zkevm.allow-free-transactions: false
 zkevm.allow-pre-eip155-transactions: true
 
-zkevm.sequencer-block-seal-time: "6s"
-zkevm.sequencer-batch-seal-time: "30m"
-
 zkevm.rpc-get-batch-witness-concurrency-limit: 2
-zkevm.l2-short-circuit-to-verified-batch: false
 
 rpc.batch.limit: 1000
 

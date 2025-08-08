@@ -9,10 +9,10 @@ services:
     environment:
       - CDK_ERIGON_SEQUENCER=0
       - NETWORK_ENV=${NETWORK_ENV:-testnet}
-      - CHAIN_NAME=${CHAIN_NAME:-dynamic-lumia-testnet}
+      - CHAIN_NAME=dynamic-lumia-${NETWORK_ENV:-testnet}
     command: 
       - "--config" 
-      - "/root/dynamic-configs/${CHAIN_NAME:-dynamic-lumia-testnet}-config.yaml"
+      - "/root/dynamic-configs/dynamic-lumia-${NETWORK_ENV:-testnet}-config.yaml"
       - "--zkevm.l2-sequencer-rpc-url"
       - ${CDK_ERIGON_ZKEVM_L2_SEQUENCER_RPC_URL}
       - "--zkevm.l2-datastreamer-url"
@@ -20,10 +20,10 @@ services:
       - "--zkevm.l1-rpc-url"
       - ${CDK_ERIGON_L1_RPC_URL}
     volumes:
-      - ./config/${NETWORK_ENV:-testnet}/dynamic-${NETWORK_ENV:-testnet}-config.yaml:/root/dynamic-configs/${CHAIN_NAME:-dynamic-lumia-testnet}-config.yaml:ro
-      - ./config/${NETWORK_ENV:-testnet}/dynamic-${NETWORK_ENV:-testnet}-allocs.json:/root/dynamic-configs/${CHAIN_NAME:-dynamic-lumia-testnet}-allocs.json
-      - ./config/${NETWORK_ENV:-testnet}/dynamic-${NETWORK_ENV:-testnet}-chainspec.json:/root/dynamic-configs/${CHAIN_NAME:-dynamic-lumia-testnet}-chainspec.json
-      - ./config/${NETWORK_ENV:-testnet}/dynamic-${NETWORK_ENV:-testnet}-conf.json:/root/dynamic-configs/${CHAIN_NAME:-dynamic-lumia-testnet}-conf.json
+      - ./config/${NETWORK_ENV:-testnet}/dynamic-lumia-${NETWORK_ENV:-testnet}-config.yaml:/root/dynamic-configs/dynamic-lumia-${NETWORK_ENV:-testnet}-config.yaml:ro
+      - ./config/${NETWORK_ENV:-testnet}/dynamic-lumia-${NETWORK_ENV:-testnet}-allocs.json:/root/dynamic-configs/dynamic-lumia-${NETWORK_ENV:-testnet}-allocs.json
+      - ./config/${NETWORK_ENV:-testnet}/dynamic-lumia-${NETWORK_ENV:-testnet}-chainspec.json:/root/dynamic-configs/dynamic-lumia-${NETWORK_ENV:-testnet}-chainspec.json
+      - ./config/${NETWORK_ENV:-testnet}/dynamic-lumia-${NETWORK_ENV:-testnet}-conf.json:/root/dynamic-configs/dynamic-lumia-${NETWORK_ENV:-testnet}-conf.json
       - ./data/${NETWORK_ENV:-testnet}:/data
     ports:
       - 8545:8545 # rpc
