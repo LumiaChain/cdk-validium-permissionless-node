@@ -10,7 +10,8 @@ services:
       - CDK_ERIGON_SEQUENCER=0
       - NETWORK_ENV=${NETWORK_ENV:-testnet}
       - CHAIN_NAME=dynamic-lumia-${NETWORK_ENV:-testnet}
-    command: 
+      - CHAIN_NAME=dynamic-lumia-${NETWORK_ENV:-testnet}
+    command:
       - "--config" 
       - "/root/dynamic-configs/dynamic-lumia-${NETWORK_ENV:-testnet}-config.yaml"
       - "--zkevm.l2-sequencer-rpc-url"
@@ -19,6 +20,8 @@ services:
       - ${CDK_ERIGON_L2_DATASTREAMER_URL}
       - "--zkevm.l1-rpc-url"
       - ${CDK_ERIGON_L1_RPC_URL}
+      - "--zkevm.initial-batch.config"
+      - "/root/dynamic-configs/dynamic-lumia-${NETWORK_ENV:-testnet}-first-batch-config.json"
     volumes:
       - ./config/${NETWORK_ENV:-testnet}/dynamic-lumia-${NETWORK_ENV:-testnet}-config.yaml:/root/dynamic-configs/dynamic-lumia-${NETWORK_ENV:-testnet}-config.yaml:ro
       - ./config/${NETWORK_ENV:-testnet}/dynamic-lumia-${NETWORK_ENV:-testnet}-allocs.json:/root/dynamic-configs/dynamic-lumia-${NETWORK_ENV:-testnet}-allocs.json
