@@ -10,7 +10,6 @@ services:
       - CDK_ERIGON_SEQUENCER=0
       - NETWORK_ENV=${NETWORK_ENV:-testnet}
       - CHAIN_NAME=dynamic-lumia-${NETWORK_ENV:-testnet}
-      - CHAIN_NAME=dynamic-lumia-${NETWORK_ENV:-testnet}
     command:
       - "--config" 
       - "/root/dynamic-configs/dynamic-lumia-${NETWORK_ENV:-testnet}-config.yaml"
