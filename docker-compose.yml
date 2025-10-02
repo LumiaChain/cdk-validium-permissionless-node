@@ -1,6 +1,6 @@
 services:
   rpc:
-    container_name: rpc
+    container_name: lumia-permissionless-rpc
     image: hermeznetwork/cdk-erigon:v2.61.24
     user: root
     restart: always
