@@ -35,6 +35,14 @@ zkevm.allow-pre-eip155-transactions: true
 
 zkevm.rpc-get-batch-witness-concurrency-limit: 2
 
+zkevm.witness-full: false
+
+zkevm.disable-virtual-counters: true
+zkevm.mock-witness-generation: true
+
+zkevm.initial-batch.config: /dynamic-configs/dynamic-lumia-mainnet-first-batch-config.json
+
+
 rpc.batch.limit: 1000
 
 http: true
