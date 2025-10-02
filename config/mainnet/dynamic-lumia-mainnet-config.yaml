@@ -35,6 +35,11 @@ zkevm.allow-pre-eip155-transactions: true
 
 zkevm.rpc-get-batch-witness-concurrency-limit: 2
 
+zkevm.witness-full: false
+
+zkevm.disable-virtual-counters: true
+zkevm.mock-witness-generation: true
+
 rpc.batch.limit: 1000
 
 http: true
