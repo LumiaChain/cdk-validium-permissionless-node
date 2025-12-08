@@ -21,11 +21,14 @@ This work is based on docker-compose provided in [cdk-erigon repository](https:/
 
 * Configure the `.env` file for your desired network:
   * For **testnet** (default): Update `CDK_ERIGON_L1_RPC_URL`, `CDK_ERIGON_L2_DATASTREAMER_URL` and `CDK_ERIGON_ZKEVM_L2_SEQUENCER_RPC_URL` with a Sepolia endpoint
+  * Set `CDK_ERIGON_IMAGE` to `ghcr.io/0xpolygon/cdk-erigon:v2.64.0-RC10`
 
   * For **mainnet**: Replace at the top of the `.env` file `testnet` with `mainnet` and update `CDK_ERIGON_L1_RPC_URL`, `CDK_ERIGON_L2_DATASTREAMER_URL` and `CDK_ERIGON_ZKEVM_L2_SEQUENCER_RPC_URL` with a Mainnet endpoint
+  * Set `CDK_ERIGON_IMAGE` to `hermeznetwork/cdk-erigon:v2.61.24`
 
 * The configuration includes:
   * `NETWORK_ENV`: Set to either `testnet` or `mainnet`
+  * `CDK_ERIGON_IMAGE`: Set according to your network (see above)
   * Network-specific RPC endpoints for L1 and L2
 
 * Run `docker compose up`
