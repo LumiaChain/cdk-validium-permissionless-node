@@ -33,6 +33,7 @@ This work is based on docker-compose provided in [cdk-erigon repository](https:/
     # mainnet
     export CDK_ERIGON_IMAGE=hermeznetwork/cdk-erigon:v2.61.24
     ```
+    Testnet note: this newer image is not compatible with old data directories—either resync the RPC from scratch or download a fresh snapshot (S3 link to be provided).
 
 - The configuration includes:
 
