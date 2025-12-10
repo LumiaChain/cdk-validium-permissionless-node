@@ -25,13 +25,13 @@ This work is based on docker-compose provided in [cdk-erigon repository](https:/
 
   - For **mainnet**: Replace at the top of the `.env` file `testnet` with `mainnet` and update `CDK_ERIGON_L1_RPC_URL`, `CDK_ERIGON_L2_DATASTREAMER_URL` and `CDK_ERIGON_ZKEVM_L2_SEQUENCER_RPC_URL` with a Mainnet endpoint
 
-  - Set the Erigon image env var according to the network before running compose:
+  - Add `CDK_ERIGON_IMAGE` to the `.env` file according to the network:
 
-    ```bash
-    # testnet
-    export CDK_ERIGON_IMAGE=ghcr.io/0xpolygon/cdk-erigon:v2.64.0-RC10
-    # mainnet
-    export CDK_ERIGON_IMAGE=hermeznetwork/cdk-erigon:v2.61.24
+    ```.env
+    # For testnet
+    CDK_ERIGON_IMAGE=ghcr.io/0xpolygon/cdk-erigon:v2.64.0-RC10
+    # For mainnet, use the following line instead
+    # CDK_ERIGON_IMAGE=hermeznetwork/cdk-erigon:v2.61.24
     ```
     Testnet note: this newer image is not compatible with old data directories—either resync the RPC from scratch or download a fresh snapshot (S3 link to be provided).
 
