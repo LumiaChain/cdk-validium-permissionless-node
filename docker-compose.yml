@@ -1,7 +1,7 @@
 services:
   rpc:
     container_name: lumia-permissionless-rpc
-    image: hermeznetwork/cdk-erigon:v2.61.24
+    image: ${CDK_ERIGON_IMAGE}
     user: root
     restart: always
     env_file:

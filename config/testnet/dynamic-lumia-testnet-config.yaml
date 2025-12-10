@@ -47,6 +47,7 @@ zkevm.disable-virtual-counters: true
 zkevm.mock-witness-generation: true
 
 zkevm.initial-batch.config: /dynamic-configs/dynamic-lumia-testnet-first-batch-config.json
+zkevm.honour-chainspec: true
 
 rpc.batch.limit: 1000
 rpc.logs.maxrange: 10000000
@@ -78,3 +79,10 @@ txpool.globalslots: 50000
 txpool.globalbasefeeslots: 50000
 txpool.globalqueue: 100000
 txpool.accountslots: 50000
+
+override.normalcyblock: 11866512
+override.londonblock: 11866512
+override.shanghaitime: 1765191991
+override.cancun: 1765191991
+override.prague: 1765191991
+override.pmtenabledblock: 11866512
