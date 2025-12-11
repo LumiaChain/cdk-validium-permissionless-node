@@ -1,5 +1,5 @@
 {
-  "ChainName": "dynamic-lumia-testnet",
+  "ChainName": "dynamic-lumia-beam-testnet",
   "ChainID": 2030232745,
   "consensus": "ethash",
   "homesteadBlock": 0,

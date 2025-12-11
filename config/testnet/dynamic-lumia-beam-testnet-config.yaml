@@ -1,4 +1,4 @@
-chain: dynamic-lumia-testnet
+chain: dynamic-lumia-beam-testnet
 datadir: /data
 zkevm.l2-chain-id: 2030232745
 zkevm.l2-datastreamer-url: L2_DATASTREAMER_URL
@@ -46,7 +46,7 @@ zkevm.witness-full: false
 zkevm.disable-virtual-counters: true
 zkevm.mock-witness-generation: true
 
-zkevm.initial-batch.config: /dynamic-configs/dynamic-lumia-testnet-first-batch-config.json
+zkevm.initial-batch.config: /dynamic-configs/dynamic-lumia-beam-testnet-first-batch-config.json
 zkevm.honour-chainspec: true
 
 rpc.batch.limit: 1000

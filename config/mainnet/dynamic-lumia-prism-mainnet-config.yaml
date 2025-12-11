@@ -1,4 +1,4 @@
-chain: dynamic-lumia-mainnet
+chain: dynamic-lumia-prism-mainnet
 datadir: /data
 zkevm.l2-chain-id: 994873017
 zkevm.l2-datastreamer-url: L2_DATASTREAMER_URL
@@ -40,7 +40,7 @@ zkevm.witness-full: false
 zkevm.disable-virtual-counters: true
 zkevm.mock-witness-generation: true
 
-zkevm.initial-batch.config: /dynamic-configs/dynamic-lumia-mainnet-first-batch-config.json
+zkevm.initial-batch.config: /dynamic-configs/dynamic-lumia-prism-mainnet-first-batch-config.json
 
 
 rpc.batch.limit: 1000
