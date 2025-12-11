@@ -43,7 +43,7 @@ This work is based on docker-compose provided in [cdk-erigon repository](https:/
     CDK_ERIGON_ZKEVM_L2_SEQUENCER_RPC_URL=https://prism-rpc.lumia.org
     ```
 
-  > **Note:** The testnet image (`v2.64.0-RC10`) is not compatible with old data directories—either resync the RPC from scratch or download a fresh snapshot (S3 link to be provided).
+  > **Note:** The testnet image (`v2.64.0-RC10`) is not compatible with old data directories—either resync the RPC from scratch or download a fresh snapshot.
 
 - The configuration includes:
 
@@ -52,4 +52,27 @@ This work is based on docker-compose provided in [cdk-erigon repository](https:/
   - `CDK_ERIGON_IMAGE`: Docker image for the network
   - Network-specific RPC endpoints for L1 and L2
 
-- Run `docker compose up`
+- (Optional) Download chaindata snapshot for faster sync:
+
+  **Lumia Beam Testnet:**
+
+  ```bash
+  # Download the snapshot
+  wget https://cdn.lumia.org/chaindata/lumia-beam-testnet-rpc.tar.gz
+
+  # Verify checksum (recommended)
+  echo "0029185abb4d7f7c1ff53341bd4e88330f7560558d6373845f77b24d4fa975e7  lumia-beam-testnet-rpc.tar.gz" | sha256sum -c
+
+  # Extract to data directory
+  mkdir -p data/testnet
+  tar -xzf lumia-beam-testnet-rpc.tar.gz -C data/testnet
+  ```
+
+  | File | Checksum |
+  |------|----------|
+  | `lumia-beam-testnet-rpc.tar.gz` | **SHA256:** `0029185abb4d7f7c1ff53341bd4e88330f7560558d6373845f77b24d4fa975e7` |
+  | | **MD5:** `145255060ce4638aeff88cdd970389c2` |
+
+  **Lumia Prism Mainnet:** Snapshot will be made available soon.
+
+- Run `docker compose up -d`
