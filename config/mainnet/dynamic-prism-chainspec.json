@@ -1,5 +1,5 @@
 {
-  "ChainName": "dynamic-lumia-prism-mainnet",
+  "ChainName": "dynamic-prism",
   "ChainID": 994873017,
   "consensus": "ethash",
   "homesteadBlock": 0,
