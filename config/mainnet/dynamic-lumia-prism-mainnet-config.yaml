@@ -42,11 +42,10 @@ zkevm.mock-witness-generation: true
 
 zkevm.initial-batch.config: /dynamic-configs/dynamic-lumia-prism-mainnet-first-batch-config.json
 
-
 rpc.batch.limit: 1000
 
 http: true
-http.api : ["eth","debug","net","trace","web3","erigon","txpool","zkevm"]
+http.api: ["eth", "debug", "net", "trace", "web3", "erigon", "txpool", "zkevm"]
 http.port: 8545
 private.api.addr: "localhost:9093"
 http.addr: 0.0.0.0
@@ -61,3 +60,11 @@ metrics.port: 9090
 db.read.concurrency: 20000
 log.console.verbosity: "info"
 ws: true
+
+override.shanghaitime: 1775639112
+override.cancun: 1775639112
+override.prague: 1775639112
+override.normalcyblock: 15814151
+override.londonblock: 15814151
+override.pmtenabledblock: 15814151
+zkevm.honour-chainspec: true
