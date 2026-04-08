@@ -20,15 +20,14 @@ This work is based on docker-compose provided in [cdk-erigon repository](https:/
   ```
 
 - Configure the `.env` file for your desired network:
-
   - For **Lumia Beam Testnet** (default):
 
     ```.env
     NETWORK_ENV=testnet
     NETWORK_PREFIX=beam
-    CDK_ERIGON_IMAGE=ghcr.io/0xpolygon/cdk-erigon:v2.64.0-RC10
+    CDK_ERIGON_IMAGE=ghcr.io/0xpolygon/cdk-erigon:v2.65.0-RC2
     CDK_ERIGON_L1_RPC_URL=<your-sepolia-rpc-url>
-    CDK_ERIGON_L2_DATASTREAMER_URL=16.170.119.192:6900
+    CDK_ERIGON_L2_DATASTREAMER_URL=rpc-ds.lumia-beam-testnet.gateway.fm:6902
     CDK_ERIGON_ZKEVM_L2_SEQUENCER_RPC_URL=https://beam-rpc.lumia.org
     ```
 
@@ -37,16 +36,15 @@ This work is based on docker-compose provided in [cdk-erigon repository](https:/
     ```.env
     NETWORK_ENV=mainnet
     NETWORK_PREFIX=prism
-    CDK_ERIGON_IMAGE=hermeznetwork/cdk-erigon:v2.61.24
+    CDK_ERIGON_IMAGE=ghcr.io/0xpolygon/cdk-erigon:v2.65.0-RC2
     CDK_ERIGON_L1_RPC_URL=<your-ethereum-mainnet-rpc-url>
-    CDK_ERIGON_L2_DATASTREAMER_URL=16.171.93.208:6900
+    CDK_ERIGON_L2_DATASTREAMER_URL=rpc-ds.prism.gateway.fm:6903
     CDK_ERIGON_ZKEVM_L2_SEQUENCER_RPC_URL=https://prism-rpc.lumia.org
     ```
 
-  > **Note:** The testnet image (`v2.64.0-RC10`) is not compatible with old data directories—either resync the RPC from scratch or download a fresh snapshot.
+  > **Note:** The image (`v2.65.0-RC2`) is not compatible with old data directories—either resync the RPC from scratch or download a fresh snapshot.
 
 - The configuration includes:
-
   - `NETWORK_ENV`: Set to `testnet` or `mainnet`
   - `NETWORK_PREFIX`: Set to `beam` (testnet) or `prism` (mainnet)
   - `CDK_ERIGON_IMAGE`: Docker image for the network
@@ -68,10 +66,10 @@ This work is based on docker-compose provided in [cdk-erigon repository](https:/
   tar -xzf lumia-beam-testnet-rpc.tar.gz -C data/testnet
   ```
 
-  | File | Checksum |
-  |------|----------|
+  | File                            | Checksum                                                                       |
+  | ------------------------------- | ------------------------------------------------------------------------------ |
   | `lumia-beam-testnet-rpc.tar.gz` | **SHA256:** `0029185abb4d7f7c1ff53341bd4e88330f7560558d6373845f77b24d4fa975e7` |
-  | | **MD5:** `145255060ce4638aeff88cdd970389c2` |
+  |                                 | **MD5:** `145255060ce4638aeff88cdd970389c2`                                    |
 
   **Lumia Prism Mainnet:** Snapshot will be made available soon.
 
